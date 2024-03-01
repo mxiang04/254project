@@ -1,20 +1,23 @@
 # Passphrase-Hackers
 
-This implementation was done as tenure long project under the **Brain and Cognitive Science Club, IITK** by the following 2nd year UG Secretaries:
+This implementation was done as tenure long project under the **[Brain and Cognitive Science Club, IITK](https://bcs-iitk.github.io/)** by the following 2nd year UG Secretaries:
+
 1. [Udbhav Agarwal](https://github.com/udbhav-44)
 2. [Sagar Arora](https://github.com/qu-bit1)
 
 Mentors:
+
 1. [Aniruddh Pramod](https://github.com/atryt0ne)
 
 ## Introduction
-This repository is an *A Practical Deep Learning-Based Acoustic Side Channel Attack on Keyboards*
+
+This repository is an implementation of the paper _[A Practical Deep Learning-Based Acoustic Side Channel Attack on Keyboards](https://arxiv.org/abs/2308.01074)_
 
 With recent developments in deep learning, the ubiquity of microphones and the rise in online services via personal devices, acoustic side channel attacks(ASCA) present a greater threat to keyboards than ever. This repo presents a practical implementation of a state-of-the-art deep learning model in order to classify laptop keystrokes, using a smartphone integrated microphone.
 </br>
-Inspired by the [paper](https://arxiv.org/abs/2308.01074) 
 
 ## Pipeline
+
 1. KeyStroke Isolation
 2. Setting Threshold
 3. Time Shift Augmentation (Augmentation not implemented)
@@ -25,18 +28,21 @@ Inspired by the [paper](https://arxiv.org/abs/2308.01074)
 
 Note : The code provided here does not contain the implement data augmenation techniques on the Dataset
 
-
 ![Data Processing Pipeline](<./Images/Screenshot 2024-03-01 at 1.09.37 PM.png>)
 
 ## About the Dataset
+
 36 of the laptop’s keys were used (0-9, a-z) with each being pressed 25 times in a row, varying in pressure and finger, and a single file containing all 25 presses.
 
-The recordings were done thorough 2 sources 
+The recordings were done thorough 2 sources
+
 1. SmartPhone Microphone
 2. Zoom Meeting
 
-## Methodology : 
-### 1. **KeyStroke Isolation:** 
+## Methodology :
+
+### 1. **KeyStroke Isolation:**
+
 Implement a function to extract individual keystroke
 ![Key Stroke Isolation](<./Images/Screenshot 2024-03-01 at 1.20.04 PM.png>)
 
@@ -44,37 +50,34 @@ Performing the Fast Fourier transform(FFT) on the recording and summing
 the coefficients across frequencies to get ‘energy’.
 An energy threshold is then defined and used to signify the presence of a keystroke.
 
-
 ### 2. Feature Extraction:
-- methods for FE $\to$ FFT, MFCC, XC (not used because MFCC - human speech, FFT - linear scale which is bad)
-- paper used mel-spectrograms
-- mel-spectograms $\to$ method of depicting sound waves and is a modified version of a spectrogram, unit of freq - mel
-- spectograms $\to$ represents sound as a map of coloured pixel(brightness - amplitude of frequency), Y - freq, X - time
-  
- ![Feature Extraction](<./Images/Screenshot 2024-03-01 at 1.26.08 PM.png>)
-	
+
+-   methods for FE $\to$ FFT, MFCC, XC (not used because MFCC - human speech, FFT - linear scale which is bad)
+-   paper used mel-spectrograms
+-   mel-spectograms $\to$ method of depicting sound waves and is a modified version of a spectrogram, unit of freq - mel
+-   spectograms $\to$ represents sound as a map of coloured pixel(brightness - amplitude of frequency), Y - freq, X - time
+
+![Feature Extraction](<./Images/Screenshot 2024-03-01 at 1.26.08 PM.png>)
+
 ### 3. Model Selection:
 
 CoAtNet can be seen to consist of two depth-wise convolutional layers followed by two global relative attention layers. The act of combining convolution and self-attention methods allows for rapid processing of patterns in the data while down-sampling the size (convolution) before determining the relevance of these patterns to one another through the calculation of attention scores (self-attention)
 
-
-
 ### 4. Data Augmentation:
 
-- Prior to feature extraction, signals were time-shifted randomly by up to 40% in either direction
-- The mel-spectrograms were then generated using 64 mel bands, a window length of 1024 samples and hop length of 500
-- Using the spectrograms, a second method of data augmentation was implemented called masking.
-- This method involves taking a random 10% of both the time and frequency axis and setting all values within those ranges to the mean of the spectrogram, essentially ‘blocking out’ a portion of the image.
-- Using time warping and spectrogram masking combined is called SpecAugment and was found to encourage the model to generalise and avoid overfitting the training data 
+-   Prior to feature extraction, signals were time-shifted randomly by up to 40% in either direction
+-   The mel-spectrograms were then generated using 64 mel bands, a window length of 1024 samples and hop length of 500
+-   Using the spectrograms, a second method of data augmentation was implemented called masking.
+-   This method involves taking a random 10% of both the time and frequency axis and setting all values within those ranges to the mean of the spectrogram, essentially ‘blocking out’ a portion of the image.
+-   Using time warping and spectrogram masking combined is called SpecAugment and was found to encourage the model to generalise and avoid overfitting the training data
 
 ## 5. HyperParameters:
+
 We trained the model on the 700 epochs
 ![HyperParameter Tuning](<./Images/Screenshot 2024-03-01 at 1.18.22 PM.png>)
 
-
-
-
 ## Citations
+
 ```
 @inproceedings{Harrison_2023,
    title={A Practical Deep Learning-Based Acoustic Side Channel Attack on Keyboards},

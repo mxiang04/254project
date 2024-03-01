@@ -9,6 +9,8 @@ Mentors:
 
 1. [Aniruddh Pramod](https://github.com/atryt0ne)
 
+Trained Model weights trained on 700 epochs also provided in the repo under the name `700_passphrase.pth`
+
 ## Introduction
 
 This repository is an implementation of the paper _[A Practical Deep Learning-Based Acoustic Side Channel Attack on Keyboards](https://arxiv.org/abs/2308.01074)_
@@ -28,7 +30,7 @@ With recent developments in deep learning, the ubiquity of microphones and the r
 
 Note : The code provided here does not contain the implement data augmenation techniques on the Dataset
 
-![Data Processing Pipeline](<./Images/Screenshot 2024-03-01 at 1.09.37 PM.png>)
+![Data Processing Pipeline](<./Images/Screenshot 2024-03-01 at 1.45.59 PM.png>)
 
 ## About the Dataset
 
@@ -44,7 +46,7 @@ The recordings were done thorough 2 sources
 ### 1. **KeyStroke Isolation:**
 
 Implement a function to extract individual keystroke
-![Key Stroke Isolation](<./Images/Screenshot 2024-03-01 at 1.20.04 PM.png>)
+![Key Stroke Isolation](./Images/Screenshot 2024-03-01 at 1.46.46 PM.png)
 
 Performing the Fast Fourier transform(FFT) on the recording and summing
 the coefficients across frequencies to get ‘energy’.
@@ -57,7 +59,7 @@ An energy threshold is then defined and used to signify the presence of a keystr
 -   mel-spectograms $\to$ method of depicting sound waves and is a modified version of a spectrogram, unit of freq - mel
 -   spectograms $\to$ represents sound as a map of coloured pixel(brightness - amplitude of frequency), Y - freq, X - time
 
-![Feature Extraction](<./Images/Screenshot 2024-03-01 at 1.26.08 PM.png>)
+![Feature Extraction](<./Images/Screenshot 2024-03-01 at 1.47.30 PM.png>)
 
 ### 3. Model Selection:
 
@@ -74,7 +76,7 @@ CoAtNet can be seen to consist of two depth-wise convolutional layers followed b
 ## 5. HyperParameters:
 
 We trained the model on the 700 epochs
-![HyperParameter Tuning](<./Images/Screenshot 2024-03-01 at 1.18.22 PM.png>)
+![HyperParameter Tuning](./Images/Screenshot 2024-03-01 at 1.48.34 PM.png)
 
 ## Citations
 

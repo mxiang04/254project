@@ -46,7 +46,7 @@ The recordings were done thorough 2 sources
 ### 1. **KeyStroke Isolation:**
 
 Implement a function to extract individual keystroke
-![Key Stroke Isolation](./Images/Screenshot 2024-03-01 at 1.46.46 PM.png)
+![Key Stroke Isolation](<./Images/Screenshot 2024-03-01 at 1.46.46 PM.png>)
 
 Performing the Fast Fourier transform(FFT) on the recording and summing
 the coefficients across frequencies to get ‘energy’.
@@ -76,7 +76,7 @@ CoAtNet can be seen to consist of two depth-wise convolutional layers followed b
 ## 5. HyperParameters:
 
 We trained the model on the 700 epochs
-![HyperParameter Tuning](./Images/Screenshot 2024-03-01 at 1.48.34 PM.png)
+![HyperParameter Tuning](<./Images/Screenshot 2024-03-01 at 1.48.34 PM.png>)
 
 ## Citations
 

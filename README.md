@@ -1,5 +1,13 @@
 # Passphrase-Hackers
 
+## Setup for 254
+
+1. Create virtual environment and activate it.
+2. pip3 install torch torchvision scikit-learn pandas numpy librosa
+   matplotlib scikit-image ipykernel
+3. Choose your virtual environment for your ipynb file.
+4. Run file.
+
 This implementation was done as tenure long project under the **[Brain and Cognitive Science Club, IITK](https://bcs-iitk.github.io/)** by the following 2nd year UG Secretaries:
 
 1. [Udbhav Agarwal](https://github.com/udbhav-44)
@@ -54,10 +62,10 @@ An energy threshold is then defined and used to signify the presence of a keystr
 
 ### 2. Feature Extraction:
 
--   methods for FE $\to$ FFT, MFCC, XC (not used because MFCC - human speech, FFT - linear scale which is bad)
--   paper used mel-spectrograms
--   mel-spectograms $\to$ method of depicting sound waves and is a modified version of a spectrogram, unit of freq - mel
--   spectograms $\to$ represents sound as a map of coloured pixel(brightness - amplitude of frequency), Y - freq, X - time
+- methods for FE $\to$ FFT, MFCC, XC (not used because MFCC - human speech, FFT - linear scale which is bad)
+- paper used mel-spectrograms
+- mel-spectograms $\to$ method of depicting sound waves and is a modified version of a spectrogram, unit of freq - mel
+- spectograms $\to$ represents sound as a map of coloured pixel(brightness - amplitude of frequency), Y - freq, X - time
 
 ![Feature Extraction](<./Images/Screenshot 2024-03-01 at 1.47.30 PM.png>)
 
@@ -67,11 +75,11 @@ CoAtNet can be seen to consist of two depth-wise convolutional layers followed b
 
 ### 4. Data Augmentation:
 
--   Prior to feature extraction, signals were time-shifted randomly by up to 40% in either direction
--   The mel-spectrograms were then generated using 64 mel bands, a window length of 1024 samples and hop length of 500
--   Using the spectrograms, a second method of data augmentation was implemented called masking.
--   This method involves taking a random 10% of both the time and frequency axis and setting all values within those ranges to the mean of the spectrogram, essentially ‘blocking out’ a portion of the image.
--   Using time warping and spectrogram masking combined is called SpecAugment and was found to encourage the model to generalise and avoid overfitting the training data
+- Prior to feature extraction, signals were time-shifted randomly by up to 40% in either direction
+- The mel-spectrograms were then generated using 64 mel bands, a window length of 1024 samples and hop length of 500
+- Using the spectrograms, a second method of data augmentation was implemented called masking.
+- This method involves taking a random 10% of both the time and frequency axis and setting all values within those ranges to the mean of the spectrogram, essentially ‘blocking out’ a portion of the image.
+- Using time warping and spectrogram masking combined is called SpecAugment and was found to encourage the model to generalise and avoid overfitting the training data
 
 ## 5. HyperParameters:
 
